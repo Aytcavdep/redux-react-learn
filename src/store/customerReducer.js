@@ -18,7 +18,7 @@ export const customerReducer = (state = defaultState, action) => {
       return {
         ...state,
         customers: state.customers.filter(
-          customer => customer.id !== action.payload
+          (customer) => customer.id !== action.payload
         ),
       };
 
@@ -28,11 +28,14 @@ export const customerReducer = (state = defaultState, action) => {
 };
 
 export const addCustomerAction = (payload) => ({
-  type: ADD_CUSTOMER, payload
-})
+  type: ADD_CUSTOMER,
+  payload,
+});
 export const removeCustomerAction = (payload) => ({
-  type: REMOVE_CUSTOMERS, payload
-})
+  type: REMOVE_CUSTOMERS,
+  payload,
+});
 export const addManyCustomerAction = (payload) => ({
-  type: ADD_MANY_CUSTOMERS, payload
-})
+  type: ADD_MANY_CUSTOMERS,
+  payload,
+});

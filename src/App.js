@@ -1,8 +1,19 @@
+import { Button } from "antd";
+import "antd/dist/antd.css";
+import {
+  PlusCircleOutlined,
+  MinusCircleOutlined,
+  UserAddOutlined,
+  UsergroupAddOutlined,
+} from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import { fetchCustomers } from "./asyncAction/customers";
 import { addCashAction, getCashAction } from "./store/cashReducer";
-import { addCustomerAction, removeCustomerAction } from "./store/customerReducer";
+import {
+  addCustomerAction,
+  removeCustomerAction,
+} from "./store/customerReducer";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,18 +42,40 @@ function App() {
 
   return (
     <div className="app">
-      <div style={{ fontSize: "3em" }}>баланс: {cash}</div>
-      <div style={{ display: "flex" }}>
-        <button onClick={() => addCash(Number(prompt()))}>
+      <div className="head">Баланс: {cash}</div>
+      <div>
+        <Button
+          icon={<PlusCircleOutlined />}
+          type="primary"
+          size={"small"}
+          onClick={() => addCash(Number(prompt()))}
+        >
           Пополнить счёт
-        </button>
-        <button onClick={() => getCash(Number(prompt()))}>
+        </Button>
+        <Button
+          icon={<MinusCircleOutlined />}
+          type="primary"
+          size={"small"}
+          onClick={() => getCash(Number(prompt()))}
+        >
           Снять со счета
-        </button>
-        <button onClick={() => addCustomer(prompt())}>Добавить клиента</button>
-        <button onClick={() => dispatch(fetchCustomers())}>
+        </Button>
+        <Button
+          icon={<UserAddOutlined />}
+          type="primary"
+          size={"small"}
+          onClick={() => addCustomer(prompt())}
+        >
+          Добавить клиента
+        </Button>
+        <Button
+          icon={<UsergroupAddOutlined />}
+          type="primary"
+          size={"small"}
+          onClick={() => dispatch(fetchCustomers())}
+        >
           Получить клиентов из базы
-        </button>
+        </Button>
       </div>
       {customers.length > 0 ? (
         <div>
@@ -62,7 +95,7 @@ function App() {
           ))}
         </div>
       ) : (
-        <div style={{ fontSize: "em" }}>Клиенты отсутствуют</div>
+        <div style={{ fontSize: "3em" }}>Клиенты отсутствуют</div>
       )}
     </div>
   );
